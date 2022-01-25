@@ -1,0 +1,93 @@
+﻿@page
+@model EmbeddedHelpPage.Pages.Articles.SerialCommsModel
+@{
+}
+
+<article>
+    <h2>Introduction to Serial Communications</h2>
+    <p><em>January 25th, 2021</em> by <b>Liam</b></p>
+    <!--Description-->
+    <p>
+        This article will go over the basics of different serial communication
+        protocols that are often utilized by embedded platforms. Each protocol
+        has specific use cases for which it is better suited.
+    </p>
+    <hr />
+    <!--Post content-->
+    <!--UART-->
+    <h3>UART: Universal Asynchronous Recieve Transmit</h3>
+    <p>
+        The UART protocol was built to transmit data using one wire for each direction. The UARt protocol
+        is known as <b>asynchronous</b>, which means that it does not utilize a clock source to coordinate
+        data transfer between devices. In order to synchronize data transfer, the two devices agree on a rate
+        at which they will communicate, called the <b>baud rate</b>. In general, lower baud rates are safer to use
+        because there is a smaller chance that the data will be corrupted during transmission and recieval. <br />
+        Speaking of transmission and recieval, devices that utilize the UART communication protocol will often have
+        two pins labelled <b>TX</b> &amp; <b>RX</b>. These two pins stand for <em>Transmit</em> &amp; <em>Recieve</em>,
+        as you probably deduced. When two UART devices are connected, the <b>TX</b> pin of one device is connected
+        to the <b>RX</b> pin of another device, and vice versa. In other words, if two devices are communicating (say 'Device 1'
+        &amp; 'Device 2'), then Device 1 with transmit data (<b>TX1</b>) to the recieve pin of Device 2 (<b>RX2</b>). The
+        same principle applies when Device 2 wants to send data to Device 1. A diagram that describes this communication
+        setup is shown below.
+    </p>
+    <!--UART high level device image-->
+    <div class="row">
+        <div class="col-12 text-center">
+            <figure class="figure text-center">
+                <img src="~/images/uart_device.png" />
+                <figcaption class="figure-caption mt-1">Basic UART Communication Scheme</figcaption>
+            </figure>
+        </div>
+    </div>
+    <p>
+        You may be wondering how devices operating with the UART protocol know when meaningful data arrives. In
+        other words, how does the device know when to start <em>reading</em> bits? The <b>UART</b> protocol
+        utilizes an agrred-upon bit structure that allows devices to communicate effectively. In order to
+        transmit a byte of data, the <b>RX</b> port of the recieving device must encounter a <b>START</b> bit.
+        When the UART communication line is not being used, its states defaults to logic HIGH or 1. A <b>START</b>
+        bit occurs when the digital state of the line changes to LOw (i.e. 0) indicating that the next 8 bits on the
+        transmission line will represent data that is sent to the recieve device. After the <b>START</b> bit has been
+        followed by (5-8) bits of data, the system has the option of sending a <b>PARITY</b> bit. This is optional, and
+        the purpose of the parity bit is to ensure that the data has not been corrupted during transmission from the <b>TX</b>
+        port of one device to the <b>RX</b> port of another device. The parity bit will indicate the parity of the number of 1's (
+        digital HIGH bits) included in the transmitted data. If the parity bit is LOW (0), then the data <em>frame</em> has an even parity (i.e.
+        there are an even number of 1's within the signal). If the parity bit is HIGH (1), then data <em>frame</em> has an odd parity (i.e.
+        there are an odd number of 1's within the signal). The parity bit allows the recieving device to examine the integrity of the signal
+        by counting the number of 1's recieved in a frame and comparing the parity of that count to the parity bit. Finally, when all of the
+        data has been transmitted, the data <em>frame</em> is terminated with a STOP bit. At this point, the UART line defaults back to the
+        idle state, such that the line stays at digital HIGH (1) until more data is transmitted along the line. An image is shown below that
+        explains the frame structure utilized by systems communicating via the UARt protocol. Note that these settings must be agreed upon (such as
+        the <b>baud rate</b> &amp; <b>parity</b>) on each device before initializing communication.
+        (see <a asp-page="/Articles/DigitalInfo">Digital Information: Bits, Nibbles, Bytes and Words</a>
+        for more information on how information is stored on digital platforms).
+    </p>
+    <!--UART frame image-->
+    <div class="row">
+        <div class="col-12 text-center">
+            <figure class="figure text-center">
+                <img src="~/images/uart_frame.png" />
+                <figcaption class="figure-caption mt-1">UART Frame Structure</figcaption>
+            </figure>
+        </div>
+    </div>
+
+    <!--SPI-->
+    <h3>SPI: Serial Peripheral Interface</h3>
+    <p>
+        The Serial Peripheral Interface is a communication protocol that allows devices to
+        communicate. There are some significant differences between SPI and the communication 
+        protocol we have already discussed (UART). The first major difference is that the SPI communication 
+        bus is <b>synchronous</b>(note that <b>bus</b> is part of the nomenclature used to describe communication systems that refers to
+        the physical wires / traces on a circuit (or circuit board)). In contrast to the UART protocol, where the devices agreed on a 
+        specified rate at which they would transfer data before hand, the term <b>synchronous</b> means that the <b>Master</b> of the SPI 
+        configuration supplies a clock source on one wire to all of the other devices (known as <b>Slaves</b>). This clock source is 
+        used to synchronize data transfer between the devices. Another important feature of the SPI communication protocol is that 
+        one device is configured such that it controls data transmission (known as the <b>Master</b>) between itself and the 
+        other devices (known as <b>Slaves</b>). There is some common nomenclature that we should explore in order to familiarize yourself
+        with the SPI protocol. This nomenclature is summarized in the table below.
+    </p>
+
+    <!--I2C-->
+    <h3>I2C: Inter-Integrated Circuit</h3>
+
+</article>

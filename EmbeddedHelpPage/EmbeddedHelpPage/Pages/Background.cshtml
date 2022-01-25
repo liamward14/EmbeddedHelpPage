@@ -1,0 +1,91 @@
+﻿@page
+@model EmbeddedHelpPage.Pages.BackgroundModel
+@{
+}
+
+<div class="card">
+    <div class="card-header">
+        <h2>Background Knowledge Section</h2>
+    </div>
+    <div class="card-body">
+        <p>
+            In this section, you can browse various articles that provide background
+            knowledge about essential embedded systems concepts. These articles are
+            categorized into either <b>software</b> or <b>hardware</b> categories.
+        </p>
+    </div>
+</div>
+
+<div class="row mt-2 mb-2">
+    <div class="col-3">
+        <!--Software Figure-->
+        <figure class="figure">
+            <img src="~/images/soft_logo.png" />
+        </figure>
+    </div>
+    <div class="col-9">
+        <!--Software Articles-->
+        <div class="card">
+            <div class="card-header">
+                <h3>Software</h3>
+            </div>
+            <div class="card-body">
+                <!--Intro to C - The Basics article-->
+                <div class="card mt-2 mb-2">
+                    <div class="card-header">
+                        <a asp-page="/Articles/IntroToC"><h4>Intro to C - The Basics</h4></a>
+                    </div>
+                    <div class="card-body">
+                        <!--TODO: Put description here-->
+                        <p>
+                            Description
+                        </p>
+                    </div>
+                </div>
+
+                <!--Serial Communication Protocols article-->
+                <div class="card mt-2 mb-2">
+                    <div class="card-header">
+                        <a asp-page="/Articles/SerialComms"><h4>Serial Communication Protocols</h4></a>
+                    </div>
+                    <div class="card-body">
+                        <!--TODO: Put description here-->
+                        <p>
+                            Description
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="row mt-2 mb-2">
+    <div class="col-9">
+        <!--Hardware Articles-->
+        <div class="card">
+            <div class="card-header">
+                <h3>Hardware</h3>
+            </div>
+            <div class="card-body">
+                <!--Intro to memory article-->
+                <div class="card">
+                    <div class="card-header">
+                        <a asp-page="/Articles/IntroToMemory"><h4>Intro to Memory</h4></a>
+                    </div>
+                    <div class="card-header">
+                        <!--TODO: Put description here-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3 text-right">
+        <!--Hardware Figure-->
+        <figure class="figure">
+            <img src="~/images/hard_logo.png" />
+        </figure>
+    </div>
+</div>
